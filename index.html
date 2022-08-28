@@ -1,0 +1,34 @@
+<html><head></head><body><form onsubmit="submitdetails(event)">
+    <label>UserName</label>
+<input type="text" name="username">
+<br>
+<br>
+<label>E-Mail</label>
+<input type="email" name="useremail">
+<br>
+<button>Submit</button>
+<ul id="list"></ul>
+
+
+
+</form>
+<script>
+    function submitdetails(event){
+        event.preventDefault();
+        let myobj = {
+            username : event.target.username.value,
+            useremail:event.target.useremail.value
+        };
+let myobj_serialized = JSON.stringify(myobj);
+localStorage.setItem(myobj.useremail,myobj_serialized);
+showUserDetails(myobj);
+
+    };
+    function showUserDetails(user){
+        let parentNode = document.getElementById('list');
+        let childNode = `<li> ${user.username} - ${user.useremail}</li>`;
+        parentNode.innerHTML = parentNode.innerHTML+childNode;
+    }
+</script>
+
+</body></html>
